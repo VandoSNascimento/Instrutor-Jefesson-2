@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jefferson Santos | Seu Instrutor de Trânsito</title>
+    <!-- Carregamento do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuração do Tailwind para o tema Dark e Amarelo de Trânsito -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // Cores do Tema
+                        'primary-dark': '#030712', // Fundo Quase Preto
+                        'secondary-dark': '#1F2937', // Cinza Escuro para contraste (Cartões/Navbar)
+                        'accent-yellow': '#FFC72C', // Amarelo de Trânsito (Destaque)
+                        'text-light': '#F9FAFB', // Texto Principal (Branco/Quase Branco)
+                        'cta-blue': '#2563EB', // Azul para CTAs secundários (Aprovado/Exame)
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Define a fonte padrão para Inter e fundo escuro */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+        }
+        /* Estilo para a animação de carregamento */
+        .loading-indicator {
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        /* Classe para tornar o iframe de vídeo responsivo */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 1rem; /* rounded-xl */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="text-text-light">
+
+    <!-- Navbar Fixa -->
+    <header class="sticky top-0 z-50 bg-secondary-dark shadow-xl">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-accent-yellow">
+                🚧 <span class="hidden sm:inline">Instrutor</span> Jefferson
+            </div>
+            <nav class="space-x-4 hidden md:flex">
+                <a href="#inicio" class="text-text-light hover:text-accent-yellow font-medium transition duration-300">Início</a>
+                <a href="#sobre" class="text-text-light hover:text-accent-yellow font-medium transition duration-300">Sobre Mim</a>
+                <a href="#video" class="text-text-light hover:text-accent-yellow font-medium transition duration-300">Vídeos</a>
+                <a href="#servicos" class="text-text-light hover:text-accent-yellow font-medium transition duration-300">Serviços</a>
+                <a href="#contato" class="px-4 py-1 bg-accent-yellow text-primary-dark rounded-lg shadow-lg font-bold hover:opacity-90 transition duration-300">Contato</a>
+            </nav>
+            <!-- Botão de Menu para Mobile -->
+            <button id="menu-button" class="md:hidden text-text-light focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-secondary-dark shadow-lg pb-2">
+            <a href="#inicio" class="block px-4 py-2 text-text-light hover:bg-primary-dark">Início</a>
+            <a href="#sobre" class="block px-4 py-2 text-text-light hover:bg-primary-dark">Sobre Mim</a>
+            <a href="#video" class="block px-4 py-2 text-text-light hover:bg-primary-dark">Vídeos</a>
+            <a href="#servicos" class="block px-4 py-2 text-text-light hover:bg-primary-dark">Serviços</a>
+            <a href="#contato" class="block px-4 py-2 text-accent-yellow hover:bg-primary-dark">Contato</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Seção Hero (Início) -->
+        <section id="inicio" class="relative bg-secondary-dark pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden border-b-8 border-accent-yellow/50">
+            <div class="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center justify-between">
+                <!-- Texto Principal -->
+                <div class="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-text-light">
+                        Dirija com Confiança e <span class="text-accent-yellow">Segurança</span>.
+                    </h1>
+                    <p class="text-xl sm:text-2xl font-light mb-8 text-gray-300">
+                        Seu guia especializado para a Primeira Habilitação e Vencendo o Medo de Dirigir.
+                    </p>
+                    <!-- CTA com WhatsApp -->
+                    <a href="https://wa.me/5582988183262" target="_blank" class="inline-block px-8 py-3 bg-accent-yellow text-primary-dark text-lg font-bold rounded-xl shadow-2xl transition duration-500 transform hover:scale-105 hover:bg-opacity-90">
+                        Chamar no WhatsApp
+                    </a>
+                </div>
+
+                <!-- Imagem do Instrutor Jefferson (image.jpg) -->
+                <div class="md:w-1/3">
+                    <img 
+                        src="img/image.png" 
+                        alt="Foto do Instrutor Jefferson Santos" 
+                        class="w-full h-auto rounded-full shadow-2xl border-4 border-accent-yellow object-cover max-w-xs mx-auto md:max-w-none"
+                        onerror="this.onerror=null; this.src='https://placehold.co/400x400/FFC72C/1F2937?text=Instrutor%0AJefferson%0ASantos';"
+                    >
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Seção de Qualidades (Diferenciais) -->
+        <section class="py-16 bg-primary-dark">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-text-light">Por Que Escolher o Instrutor Jefferson?</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card 1: Paciência -->
+                    <div class="p-6 bg-secondary-dark rounded-xl shadow-lg text-center transition duration-300 hover:shadow-xl border-t-4 border-accent-yellow">
+                        <span class="text-5xl text-accent-yellow mb-4 block">🧘</span>
+                        <h3 class="text-xl font-semibold mb-3 text-text-light">Paciência Incomparável</h3>
+                        <p class="text-gray-400">Especialista em lidar com alunos nervosos ou com amaxofobia (medo de dirigir), garantindo um aprendizado tranquilo.</p>
+                    </div>
+                    <!-- Card 2: Experiência -->
+                    <div class="p-6 bg-secondary-dark rounded-xl shadow-lg text-center transition duration-300 hover:shadow-xl border-t-4 border-accent-yellow">
+                        <span class="text-5xl text-accent-yellow mb-4 block">🏆</span>
+                        <h3 class="text-xl font-semibold mb-3 text-text-light">10 Anos de Experiência</h3>
+                        <p class="text-gray-400">Mais de uma década formando condutores responsáveis e seguros nas ruas da cidade.</p>
+                    </div>
+                    <!-- Card 3: Metodologia -->
+                    <div class="p-6 bg-secondary-dark rounded-xl shadow-lg text-center transition duration-300 hover:shadow-xl border-t-4 border-accent-yellow">
+                        <span class="text-5xl text-accent-yellow mb-4 block">📚</span>
+                        <h3 class="text-xl font-semibold mb-3 text-text-light">Metodologia Personalizada</h3>
+                        <p class="text-gray-400">Aulas adaptadas ao seu ritmo e dificuldades, focando em suas necessidades específicas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Seção Sobre Mim -->
+        <section id="sobre" class="py-16 bg-secondary-dark border-t border-accent-yellow/30">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2">
+                    <!-- Imagem 09.jpg para a seção Sobre Mim (Instrutor em ação) -->
+                    <img 
+                        src="img/imagem 09.png" 
+                        alt="Instrutor Jefferson em aula prática com caminhão" 
+                        class="w-full rounded-2xl shadow-xl border-2 border-cta-blue"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x400/2563EB/ffffff?text=Instrutor%20Em%20Ação';"
+                    >
+                </div>
+                <div class="md:w-1/2">
+                    <span class="text-accent-yellow font-bold uppercase mb-2 block">Minha Missão</span>
+                    <h2 class="text-3xl font-bold mb-6 text-text-light">Conheça Jefferson Santos</h2>
+                    <p class="text-lg mb-4 text-gray-300">
+                        Sou **Jefferson Santos**, instrutor credenciado (Teórico e Prático - Categoria B, C, D e E) e apaixonado por transformar medo em confiança ao volante. Minha jornada começou há mais de 10 anos com o objetivo de ir além do básico exigido pelo Detran.
+                    </p>
+                    <p class="text-lg mb-4 text-gray-300">
+                        Sou especialista em turmas com dificuldades, amaxofobia e em recém-habilitados. Acredito que a chave para dirigir bem é a **prática calma e orientada**, construindo o conhecimento passo a passo e com foco total na segurança.
+                    </p>
+                    <a href="https://wa.me/5582988183262" target="_blank" class="text-accent-yellow font-semibold hover:text-cta-blue transition duration-300 flex items-center">
+                        <span class="text-2xl mr-2">📲</span> Fale comigo pelo WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 4. Seção de Vídeos -->
+        <section id="video" class="py-16 bg-primary-dark">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-4 text-text-light">Dicas em Vídeo</h2>
+                <p class="text-xl text-gray-400 mb-10">Assista abaixo a uma das minhas aulas rápidas sobre técnicas de baliza e controle de embreagem!</p>
+
+                <!-- Iframe do Vídeo Responsivo (Placeholder do YouTube) -->
+                <div class="max-w-3xl mx-auto">
+                    <div class="video-container">
+                        <!-- Substitua 'dQw4w9WgXcQ' pelo ID do seu vídeo no YouTube -->
+                        <iframe 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" 
+                            title="Aula de Baliza e Embreagem" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <a href="#" class="mt-6 inline-block text-accent-yellow font-semibold hover:text-cta-blue transition duration-300">
+                        Veja mais vídeos no meu canal!
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Seção de Serviços -->
+        <section id="servicos" class="py-16 bg-secondary-dark border-t border-accent-yellow/30">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-4 text-text-light">Serviços Personalizados para Você</h2>
+                <p class="text-xl text-gray-400 mb-12">Escolha o plano que mais se encaixa no seu objetivo e nível de experiência.</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <!-- Serviço 1: Primeira Habilitação -->
+                    <div class="bg-primary-dark text-text-light p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-t-4 border-cta-blue">
+                        <span class="text-4xl mb-4 block text-cta-blue">🔰</span>
+                        <h3 class="text-2xl font-bold mb-3">CNH do Zero</h3>
+                        <p class="mb-4 font-light text-gray-400">Pacote completo focado em aprovação no exame prático, cobrindo baliza, aclive e trânsito real.</p>
+                        <ul class="text-left space-y-2 mb-6 text-sm text-gray-300">
+                            <li>✓ Aulas teóricas de reforço (se necessário)</li>
+                            <li>✓ Treinamento em pista e rua</li>
+                            <li>✓ Simulação de exame com feedback</li>
+                        </ul>
+                        <a href="https://wa.me/5582988183262" target="_blank" class="inline-block w-full py-2 bg-accent-yellow text-primary-dark font-bold rounded-lg hover:opacity-80">
+                            Detalhes e Preços
+                        </a>
+                    </div>
+
+                    <!-- Serviço 2: Reforço e Medo de Dirigir (Destaque) -->
+                    <div class="bg-accent-yellow text-primary-dark p-8 rounded-2xl shadow-2xl transition duration-300 transform scale-105 border-4 border-primary-dark">
+                        <span class="text-4xl mb-4 block">⭐</span>
+                        <h3 class="text-2xl font-bold mb-3">Vença o Medo de Dirigir</h3>
+                        <p class="mb-4 font-light">Sessões terapêuticas e práticas desenhadas especificamente para quem tem amaxofobia. Volte ao volante!</p>
+                        <ul class="text-left space-y-2 mb-6 text-sm">
+                            <li>✓ Treinamento em ambiente controlado</li>
+                            <li>✓ Técnicas de relaxamento e controle</li>
+                            <li>✓ Foco no trânsito da sua rotina</li>
+                        </ul>
+                        <a href="https://wa.me/5582988183262" target="_blank" class="inline-block w-full py-2 bg-cta-blue text-white font-bold rounded-lg hover:opacity-90">
+                            Quero Superar o Medo!
+                        </a>
+                    </div>
+
+                    <!-- Serviço 3: Reciclagem e Aperfeiçoamento -->
+                    <div class="bg-primary-dark text-text-light p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-t-4 border-cta-blue">
+                        <span class="text-4xl mb-4 block text-cta-blue">🔄</span>
+                        <h3 class="text-2xl font-bold mb-3">Aperfeiçoamento Rápido</h3>
+                        <p class="mb-4 font-light text-gray-400">Ideal para recém-habilitados ou quem ficou muito tempo sem dirigir e precisa de segurança.</p>
+                        <ul class="text-left space-y-2 mb-6 text-sm text-gray-300">
+                            <li>✓ Direção defensiva avançada</li>
+                            <li>✓ Prática em rodovias e estacionamento</li>
+                            <li>✓ Manobras complexas</li>
+                        </ul>
+                        <a href="https://wa.me/5582988183262" target="_blank" class="inline-block w-full py-2 bg-accent-yellow text-primary-dark font-bold rounded-lg hover:opacity-80">
+                            Mais Informações
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Seção de Depoimentos (Foco na Confiança) -->
+        <section class="py-16 bg-primary-dark">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-text-light">Histórias de Sucesso dos Alunos</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Depoimento 1 -->
+                    <div class="bg-secondary-dark p-6 rounded-xl shadow-lg border-l-4 border-accent-yellow">
+                        <p class="italic text-gray-300 mb-4">"Eu tinha pavor de pegar o carro na rua. O Jefferson teve uma paciência infinita e em 10 aulas eu estava dirigindo no centro da cidade! Nota 10!"</p>
+                        <p class="font-semibold text-accent-yellow">- Ana C., 28 anos, Habilitada</p>
+                    </div>
+                    <!-- Depoimento 2 -->
+                    <div class="bg-secondary-dark p-6 rounded-xl shadow-lg border-l-4 border-accent-yellow">
+                        <p class="italic text-gray-300 mb-4">"Profissionalismo e foco total. Não só passei na prova, como aprendi a dirigir de verdade, com responsabilidade. Recomendo demais!"</p>
+                        <p class="font-semibold text-accent-yellow">- João M., 35 anos, Recém-Aprovado</p>
+                    </div>
+                    <!-- Depoimento 3 -->
+                    <div class="bg-secondary-dark p-6 rounded-xl shadow-lg border-l-4 border-accent-yellow">
+                        <p class="italic text-gray-300 mb-4">"Aulas de aperfeiçoamento valeram cada centavo. Saí da inércia de anos sem dirigir e hoje sou motorista da minha família. Obrigado, Jefferson!"</p>
+                        <p class="font-semibold text-accent-yellow">- Lúcia P., 45 anos, Reforço</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Seção de Contato -->
+        <section id="contato" class="py-16 bg-secondary-dark border-t-8 border-accent-yellow">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-extrabold mb-4 text-text-light">Pronto Para Começar a Dirigir?</h2>
+                <p class="text-xl font-light mb-10 text-gray-300">Entre em contato agora para tirar suas dúvidas e agendar sua aula experimental.</p>
+
+                <div class="max-w-xl mx-auto bg-primary-dark p-8 rounded-2xl shadow-2xl text-text-light">
+                    <h3 class="text-2xl font-bold mb-6 text-accent-yellow">Fale Diretamente Comigo</h3>
+
+                    <div class="space-y-4 mb-6">
+                        <!-- WhatsApp -->
+                        <div class="flex items-center justify-center p-3 bg-accent-yellow/10 rounded-lg">
+                            <span class="text-2xl text-accent-yellow mr-3">📱</span>
+                            <p class="text-lg font-medium text-text-light">WhatsApp: (82) 98818-3262</p>
+                            <a href="https://wa.me/5582988183262" target="_blank" class="ml-4 text-sm font-semibold text-accent-yellow hover:underline">Enviar Mensagem</a>
+                        </div>
+                        <!-- Telefone (Pode ser o mesmo ou fixo) -->
+                        <div class="flex items-center justify-center p-3 bg-cta-blue/10 rounded-lg">
+                            <span class="text-2xl text-cta-blue mr-3">📞</span>
+                            <p class="text-lg font-medium text-text-light">Telefone: (82) 98818-3262</p>
+                        </div>
+                        <!-- Email -->
+                        <div class="flex items-center justify-center p-3 bg-cta-blue/10 rounded-lg">
+                            <span class="text-2xl text-cta-blue mr-3">📧</span>
+                            <p class="text-lg font-medium text-text-light">Email: instrutorjefferson@email.com</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Simulação de Formulário de Contato -->
+                    <form onsubmit="handleFormSubmit(event)">
+                        <input type="text" id="nome" placeholder="Seu Nome" required class="w-full p-3 mb-4 border border-gray-700 rounded-lg focus:ring-accent-yellow focus:border-accent-yellow bg-secondary-dark text-text-light">
+                        <input type="email" id="email" placeholder="Seu Email" required class="w-full p-3 mb-4 border border-gray-700 rounded-lg focus:ring-accent-yellow focus:border-accent-yellow bg-secondary-dark text-text-light">
+                        <textarea id="mensagem" placeholder="Sua Mensagem (Ex: Quero aulas para superar o medo de dirigir)" rows="4" required class="w-full p-3 mb-6 border border-gray-700 rounded-lg focus:ring-accent-yellow focus:border-accent-yellow bg-secondary-dark text-text-light"></textarea>
+                        
+                        <button type="submit" id="submit-button" class="w-full py-3 bg-accent-yellow text-primary-dark font-bold rounded-lg shadow-md transition duration-300 hover:bg-cta-blue hover:text-white flex items-center justify-center">
+                            <span id="button-text">Enviar Contato</span>
+                            <div id="loading-spinner" class="hidden loading-indicator w-5 h-5 border-2 rounded-full border-primary-dark ml-2"></div>
+                        </button>
+                        <p id="response-message" class="mt-4 text-sm font-semibold text-center"></p>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-gray-400 py-8 border-t border-accent-yellow/10">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">&copy; 2025 Instrutor Jefferson Santos. Todos os direitos reservados.</p>
+            <p class="mb-4">Contato Rápido: **(88) 98818-3262**</p>
+            <div class="flex justify-center space-x-6">
+                <!-- Links de Redes Sociais -->
+                <a href="#" class="text-gray-400 hover:text-accent-yellow transition duration-300">Instagram</a>
+                <a href="#" class="text-gray-400 hover:text-accent-yellow transition duration-300">Facebook</a>
+            </div>
+        </div>
+    </footer>
+<script src="script.js"></script>
+    
+</body>
+</html>
